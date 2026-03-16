@@ -1,0 +1,11 @@
+#!/bin/bash
+
+cd backend
+
+# Initialize Python project and install dependencies
+uv init --bare . 2>/dev/null || true
+uv add fastapi==0.104.1 uvicorn==0.24.0 python-multipart==0.0.6 librosa==0.10.0 numpy==1.24.3 scipy==1.11.4 pydantic==2.5.0
+
+# Run the FastAPI server
+echo "Starting Music Tutor Backend on http://localhost:8000"
+uv run main.py

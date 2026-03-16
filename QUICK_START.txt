@@ -1,0 +1,192 @@
+╔════════════════════════════════════════════════════════════════════════════════╗
+║                    SWAR-SAMVED AI MUSIC TUTOR                                  ║
+║                         QUICK START GUIDE                                       ║
+╚════════════════════════════════════════════════════════════════════════════════╝
+
+┌─ STEP 1: FRONTEND SETUP (Terminal 1) ─────────────────────────────────────────┐
+│                                                                                  │
+│  $ pnpm install                                                                 │
+│  $ pnpm dev                                                                     │
+│                                                                                  │
+│  Frontend runs at: http://localhost:3000                                        │
+│                                                                                  │
+└──────────────────────────────────────────────────────────────────────────────────┘
+
+┌─ STEP 2: BACKEND SETUP (Terminal 2) ──────────────────────────────────────────┐
+│                                                                                  │
+│  $ cd backend                                                                   │
+│  $ uv init --bare .                                                             │
+│  $ uv add fastapi uvicorn python-multipart librosa numpy scipy pydantic       │
+│  $ uv run main.py                                                               │
+│                                                                                  │
+│  Backend runs at: http://localhost:8000                                         │
+│                                                                                  │
+└──────────────────────────────────────────────────────────────────────────────────┘
+
+┌─ STEP 3: USE THE APP ─────────────────────────────────────────────────────────┐
+│                                                                                  │
+│  1. Open http://localhost:3000 in your browser                                 │
+│  2. Click "Upload Reference Audio" and select an MP3/WAV/OGG/FLAC file        │
+│  3. Click "Record" and sing the same piece                                     │
+│  4. Click "Stop" when done                                                     │
+│  5. Click "Analyze & Compare"                                                  │
+│  6. View your pitch and rhythm feedback!                                       │
+│                                                                                  │
+└──────────────────────────────────────────────────────────────────────────────────┘
+
+┌─ SYSTEM REQUIREMENTS ─────────────────────────────────────────────────────────┐
+│                                                                                  │
+│  ✓ Node.js v18+                                                                │
+│  ✓ Python 3.10+                                                                │
+│  ✓ pnpm or npm                                                                 │
+│  ✓ Modern browser (Chrome, Firefox, Safari, Edge)                             │
+│  ✓ Microphone (for recording)                                                 │
+│  ✓ RAM: 4GB minimum recommended                                                │
+│                                                                                  │
+└──────────────────────────────────────────────────────────────────────────────────┘
+
+┌─ CHECK INSTALLATION ──────────────────────────────────────────────────────────┐
+│                                                                                  │
+│  $ node --version          # Should be v18 or higher                           │
+│  $ python --version        # Should be 3.10 or higher                          │
+│  $ pnpm --version          # Should show version                               │
+│  $ uv --version            # Python package manager                            │
+│                                                                                  │
+└──────────────────────────────────────────────────────────────────────────────────┘
+
+┌─ TROUBLESHOOTING ─────────────────────────────────────────────────────────────┐
+│                                                                                  │
+│  Problem: "Cannot connect to backend"                                          │
+│  ├─ Make sure backend is running in Terminal 2                                │
+│  └─ Test: curl http://localhost:8000/health                                    │
+│                                                                                  │
+│  Problem: "Microphone not working"                                             │
+│  ├─ Check browser permissions (click camera icon in URL bar)                  │
+│  └─ Try incognito mode                                                         │
+│                                                                                  │
+│  Problem: "Module not found" error                                             │
+│  ├─ Run: cd backend && uv add librosa numpy scipy                             │
+│  └─ Or: pip install librosa numpy scipy fastapi uvicorn                       │
+│                                                                                  │
+│  Problem: "Port 8000 already in use"                                          │
+│  ├─ Kill process: lsof -i :8000 | grep LISTEN | awk '{print $2}' | xargs kill │
+│  └─ Or change port in backend/main.py (uvicorn.run ... port=8001)            │
+│                                                                                  │
+│  For more help: See TROUBLESHOOTING.md                                         │
+│                                                                                  │
+└──────────────────────────────────────────────────────────────────────────────────┘
+
+┌─ FEATURES ────────────────────────────────────────────────────────────────────┐
+│                                                                                  │
+│  🎵 Real-time vocal analysis                                                   │
+│  📊 Pitch accuracy metrics (0-100%)                                            │
+│  🥁 Rhythm and tempo analysis                                                  │
+│  📈 Spectral visualization with pitch overlay                                  │
+│  💬 Instant feedback and recommendations                                       │
+│  📱 Mobile responsive design                                                   │
+│  ⚡ No account required, instant analysis                                      │
+│                                                                                  │
+└──────────────────────────────────────────────────────────────────────────────────┘
+
+┌─ SUPPORTED AUDIO FORMATS ─────────────────────────────────────────────────────┐
+│                                                                                  │
+│  ✓ MP3 (MPEG-1 Layer III)  - Best compatibility                               │
+│  ✓ WAV (PCM)                - High quality                                     │
+│  ✓ OGG (Vorbis)             - Web optimized                                    │
+│  ✓ FLAC (Lossless)          - Best quality                                     │
+│  ✓ WebM (Opus)              - Recorded format                                  │
+│                                                                                  │
+│  Max file size: 50 MB recommended                                              │
+│                                                                                  │
+└──────────────────────────────────────────────────────────────────────────────────┘
+
+┌─ API ENDPOINTS ───────────────────────────────────────────────────────────────┐
+│                                                                                  │
+│  GET    /health                Health check                                     │
+│  POST   /analyze               Analyze single audio file                       │
+│  POST   /compare               Compare test vs reference audio                 │
+│  POST   /analyze-simple        Fast analysis with minimal data                 │
+│                                                                                  │
+│  Base URL: http://localhost:8000                                               │
+│                                                                                  │
+└──────────────────────────────────────────────────────────────────────────────────┘
+
+┌─ FEEDBACK METRICS EXPLAINED ──────────────────────────────────────────────────┐
+│                                                                                  │
+│  Pitch Accuracy (0-100%)                                                       │
+│  ├─ How well you matched the target pitch                                     │
+│  └─ 80%+ = Excellent, 60-80% = Good, <60% = Needs work                       │
+│                                                                                  │
+│  Pitch Error (cents)                                                           │
+│  ├─ Deviation from target pitch                                               │
+│  ├─ 100 cents = 1 semitone (musical half-step)                               │
+│  └─ Negative = too low, Positive = too high                                   │
+│                                                                                  │
+│  Tempo Accuracy (0-100%)                                                       │
+│  ├─ How well you matched the reference tempo                                  │
+│  └─ Measured in beats per minute (BPM)                                        │
+│                                                                                  │
+│  Timing Regularity (0-100%)                                                    │
+│  ├─ Consistency of your note timing                                           │
+│  └─ 80%+ = Very consistent, <60% = Rushed/dragging                            │
+│                                                                                  │
+│  Overall Score (0-100%)                                                        │
+│  └─ Combined metric of pitch and rhythm accuracy                              │
+│                                                                                  │
+└──────────────────────────────────────────────────────────────────────────────────┘
+
+┌─ TIPS FOR BEST RESULTS ───────────────────────────────────────────────────────┐
+│                                                                                  │
+│  1. Use a good quality microphone (USB mic preferred)                          │
+│  2. Record in a quiet, enclosed space (closed door/window)                     │
+│  3. Sit 6-12 inches from microphone                                            │
+│  4. Sing clearly without hesitation                                            │
+│  5. Warm up your voice before recording                                        │
+│  6. Use professional quality reference audio                                   │
+│  7. Record 5-60 second clips for best analysis                                │
+│  8. Try multiple recordings to track improvement                               │
+│                                                                                  │
+└──────────────────────────────────────────────────────────────────────────────────┘
+
+┌─ DOCUMENTATION ───────────────────────────────────────────────────────────────┐
+│                                                                                  │
+│  README.md              - Full user guide and feature overview                 │
+│  SETUP.md               - Detailed setup instructions                          │
+│  API.md                 - Complete API reference                               │
+│  DEPLOY.md              - Production deployment guide                          │
+│  TROUBLESHOOTING.md     - Common issues and solutions                          │
+│  PROJECT_SUMMARY.md     - Technical architecture and roadmap                   │
+│                                                                                  │
+└──────────────────────────────────────────────────────────────────────────────────┘
+
+┌─ KEYBOARD SHORTCUTS ──────────────────────────────────────────────────────────┐
+│                                                                                  │
+│  F12                    Open browser developer console                         │
+│  Ctrl+Shift+Delete      Clear browser cache                                    │
+│  Cmd+Option+U (Mac)     View page source                                       │
+│  Right-click            Inspect element                                        │
+│                                                                                  │
+└──────────────────────────────────────────────────────────────────────────────────┘
+
+┌─ NEXT STEPS ──────────────────────────────────────────────────────────────────┐
+│                                                                                  │
+│  After Setup:                                                                   │
+│  1. Try recording some simple scales (C-D-E-F-G-A-B-C)                        │
+│  2. Compare against reference recording                                        │
+│  3. Review feedback and tips                                                   │
+│  4. Practice with metronome                                                    │
+│  5. Record multiple takes and track progress                                   │
+│                                                                                  │
+│  For Production:                                                                │
+│  1. Read DEPLOY.md                                                             │
+│  2. Choose hosting platform (Vercel for frontend)                              │
+│  3. Deploy backend (Railway, AWS, or similar)                                  │
+│  4. Configure environment variables                                            │
+│  5. Test thoroughly before going live                                          │
+│                                                                                  │
+└──────────────────────────────────────────────────────────────────────────────────┘
+
+╔════════════════════════════════════════════════════════════════════════════════╗
+║              Need help? Check the documentation files above!                   ║
+║           Happy Learning! 🎵                                                    ║
+╚════════════════════════════════════════════════════════════════════════════════╝
