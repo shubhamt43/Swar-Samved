@@ -64,12 +64,12 @@ An AI-powered vocal training platform that provides real-time feedback on pitch,
 
 1. Install dependencies:
 ```bash
-pnpm install
+npm install
 ```
 
 2. Run the development server:
 ```bash
-pnpm dev
+npm dev
 ```
 
 The frontend will be available at `http://localhost:3000`
