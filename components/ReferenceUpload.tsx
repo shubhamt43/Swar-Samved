@@ -70,16 +70,18 @@ export default function ReferenceUpload({
         </p>
         <p className="text-slate-400 text-sm mb-4">or</p>
 
-        <label className="inline-block">
-          <input
-            type="file"
-            accept="audio/*"
-            onChange={handleChange}
-            className="hidden"
-          />
-          <button className="bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-2 px-6 rounded-lg transition-colors cursor-pointer">
-            Choose File
-          </button>
+        <input
+          id="file-input"
+          type="file"
+          accept="audio/*"
+          onChange={handleChange}
+          className="hidden"
+        />
+        <label 
+          htmlFor="file-input"
+          className="inline-block bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-2 px-6 rounded-lg transition-colors cursor-pointer"
+        >
+          Choose File
         </label>
 
         <p className="text-xs text-slate-400 mt-4">
